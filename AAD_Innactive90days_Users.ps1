@@ -9,7 +9,7 @@ $InactiveDate = (Get-Date).AddDays(-$DaysInactive)
 $Users = Get-AzureADUser -All $true | Where-Object {$_.LastDirSyncTime -lt $InactiveDate -and $_.AccountEnabled -eq $true} | Select-Object UserPrincipalName, DisplayName, LastDirSyncTime
 
 # Export results to CSV
-$Users | Export-Csv C:\Inactive90daysUsers.csv -NoTypeInformation
+$Users | Export-Csv C:\AAD_Inactive90days_Users.csv -NoTypeInformation
 
 # Disable Inactive Users
 ForEach ($User in $Users){

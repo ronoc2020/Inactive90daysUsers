@@ -9,7 +9,7 @@ $ast = [System.Management.Automation.Language.Parser]::ParseFile(
     $scriptPath, [ref]$tokens, [ref]$errors
 )
 if ($errors.Count -gt 0) {
-    throw ('PowerShell parse failure: ' + ($errors | ForEach-Object Message -join '; '))
+    throw ('PowerShell parse failure: ' + (($errors | ForEach-Object { $_.Message }) -join '; '))
 }
 
 $names = @($ast.FindAll({

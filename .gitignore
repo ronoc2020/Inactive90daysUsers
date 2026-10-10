@@ -1,0 +1,9 @@
+# Directory account exports contain personally identifying data.
+*.csv
+*.tsv
+*.jsonl
+*.ndjson
+.env
+.env.*
+!*.example
+*.log

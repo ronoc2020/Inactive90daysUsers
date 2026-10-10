@@ -39,10 +39,20 @@ The script reports **enabled member users**, not guest accounts, and assigns one
 
 **No disabling action is implemented.** If you need a future deprovisioning workflow, it should use an explicit reviewed approval list, independent safeguards, audit evidence, and a reversible process.
 
+## Offline safety check
+
+The repository includes a static, read-only contract test:
+
+```powershell
+pwsh -NoProfile -File ./test/SafetyContract.ps1
+```
+
+This checks PowerShell syntax, blocks common user-write commands, and confirms that last successful sign-in rather than directory synchronization drives the report. It is not a substitute for tenant-level authorization checks. Run it locally before use.
+
 ## Security notes
 
 - No secrets or credentials are saved in the repo.
-- Do not commit generated CSV files, as they contain user-identifying account information.
+- Do not commit generated CSV files, as they contain user-identifying account information. `.gitignore` excludes CSV, TSV and local environment files.
 - Use read-only Graph permissions; do not grant account write permissions to run this script.
 - This repository contains no GitHub Actions workflows, so updates do not consume Actions minutes.
 
